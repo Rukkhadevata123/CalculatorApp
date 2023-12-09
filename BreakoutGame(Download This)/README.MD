@@ -4,7 +4,7 @@
 
 ## 运行方法
 
-1.确保你的系统已经安装了Java11或更高版本。可以进入https://download.oracle.com/java/17/archive/jdk-17.0.9_windows-x64_bin.msi下载。你可以通过运行`java -version`来检查你的Java版本。
+1.确保你的系统已经安装了Java11或更高版本。可以进入 https://download.oracle.com/java/17/archive/jdk-17.0.9_windows-x64_bin.msi 下载。你可以通过运行`java -version`来检查你的Java版本。
 
 2.下载游戏文件。游戏文件包含了`breakoutgame-1.0-SNAPSHOT.jar`和javafx-sdk-17.0.8.zip以及启动脚本start_game.bat。
 
