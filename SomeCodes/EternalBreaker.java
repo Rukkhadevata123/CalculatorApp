@@ -557,7 +557,11 @@ public class EternalBreaker extends Application {
             double lengthValue = Double.parseDouble(lengthValueText);
             paddle.setWidth(lengthValue);
 
-            paddle.setVisible(true);
+            if (dx == 8 && lengthText.equals("Length: " + "TRANSPARENT(80)")) {
+                paddle.setVisible(false);
+            } else {
+                paddle.setVisible(true);
+            }
 
             // Stop the reset countdown
             if (resetCountdown != null) {
