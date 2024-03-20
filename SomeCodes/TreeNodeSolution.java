@@ -13,7 +13,8 @@ class TreeNode {
 }
 
 class TreePanel extends JPanel {
-    TreeNode root;
+    private static final int NODE_SIZE = 30;
+    private TreeNode root;
 
     public TreePanel(TreeNode root) {
         this.root = root;
@@ -39,16 +40,16 @@ class TreePanel extends JPanel {
             return;
         }
 
-        g.drawOval(x, y, 30, 30);
+        g.drawOval(x, y, NODE_SIZE, NODE_SIZE);
         g.drawString(node.val, x + 10, y + 20);
 
         if (node.left != null) {
-            g.drawLine(x + 15, y + 30, x - xInc + 15, y + 60);
+            g.drawLine(x + NODE_SIZE / 2, y + NODE_SIZE, x - xInc + NODE_SIZE / 2, y + 60);
             drawTree(g, x - xInc, y + 60, xInc / 2, node.left);
         }
 
         if (node.right != null) {
-            g.drawLine(x + 15, y + 30, x + xInc + 15, y + 60);
+            g.drawLine(x + NODE_SIZE / 2, y + NODE_SIZE, x + xInc + NODE_SIZE / 2, y + 60);
             drawTree(g, x + xInc, y + 60, xInc / 2, node.right);
         }
     }
@@ -153,7 +154,7 @@ public class TreeNodeSolution {
         }
 
         if (!solution.checkNoDuplicates(preorder) || !solution.checkNoDuplicates(inorder)) {
-            System.out.println("错误：序列不能包含重复的元素！");
+            System.out.println("错误：序列不能包含重复的元素！");  
             scanner.close();
             return;
         }
