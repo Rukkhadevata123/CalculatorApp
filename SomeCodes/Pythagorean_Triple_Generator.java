@@ -11,11 +11,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class Test2GUI extends JFrame {
+public class Pythagorean_Triple_Generator extends JFrame {
     private JTextField inputField;
     private JTextArea outputArea;
 
-    public Test2GUI() {
+    public Pythagorean_Triple_Generator() {
         setTitle("Pythagorean Triple Generator");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -59,12 +59,13 @@ public class Test2GUI extends JFrame {
                     int w = Math.abs(u * u - i * i);
                     int e = u * u + i * i;
                     int[] sb = { q, w, e };
+                    Arrays.sort(sb); // 对每个勾股数进行排序
                     triples.add(sb);
                 }
             }
         }
 
-        Collections.sort(triples, (a, b) -> Integer.compare(a[0], b[0]));
+        Collections.sort(triples, (a, b) -> Integer.compare(a[0], b[0])); // 根据每个勾股数的第一个元素进行排序
 
         for (int[] triple : triples) {
             outputArea.append(Arrays.toString(triple) + "\n");
@@ -86,7 +87,7 @@ public class Test2GUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        Test2GUI gui = new Test2GUI();
+        Pythagorean_Triple_Generator gui = new Pythagorean_Triple_Generator();
         gui.setVisible(true);
     }
 
