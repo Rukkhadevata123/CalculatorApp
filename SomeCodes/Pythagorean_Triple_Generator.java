@@ -1,19 +1,13 @@
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class Pythagorean_Triple_Generator extends JFrame {
-    private JTextField inputField;
-    private JTextArea outputArea;
+    private final JTextField inputField;
+    private final JTextArea outputArea;
 
     public Pythagorean_Triple_Generator() {
         setTitle("Pythagorean Triple Generator");
@@ -34,61 +28,60 @@ public class Pythagorean_Triple_Generator extends JFrame {
         add(inputPanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
 
-        generateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                generatePythagoreanTriples();
-            }
-        });
+        generateButton.addActionListener(this::generatePythagoreanTriples);
 
         pack();
         setLocationRelativeTo(null);
     }
 
-    private void generatePythagoreanTriples() {
+    private void generatePythagoreanTriples(ActionEvent e) {
         outputArea.setText("");
 
-        int x = getIntInput(inputField);
+        int x = getIntInput();
 
         ArrayList<int[]> triples = new ArrayList<>();
 
-        for (int i = 1; i <= x; i += 2) {
-            for (int u = i + 1; u <= x + 1; u += 2) {
-                if (gcd(i, u) == 1) {
+        for (int i = 1; i < x; i++) {
+            for (int u = i + 1; u <= x; u++) {
+                if (gcd(i, u) == 1 && (i % 2 != u % 2)) {
                     int q = 2 * i * u;
                     int w = Math.abs(u * u - i * i);
-                    int e = u * u + i * i;
-                    int[] sb = { q, w, e };
+                    int c = u * u + i * i;
+                    int[] sb = { q, w, c };
                     Arrays.sort(sb); // 对每个勾股数进行排序
                     triples.add(sb);
                 }
             }
         }
 
-        Collections.sort(triples, (a, b) -> Integer.compare(a[0], b[0])); // 根据每个勾股数的第一个元素进行排序
+        Collections.sort(triples, (a, b) -> {
+            if (a[0] == b[0])
+                return Integer.compare(a[1], b[1]);
+            return Integer.compare(a[0], b[0]);
+        }); // 根据每个勾股数的第一个元素进行排序
 
-        for (int[] triple : triples) {
-            outputArea.append(Arrays.toString(triple) + "\n");
-        }
+        triples.forEach(triple -> outputArea.append(Arrays.toString(triple) + "\n"));
     }
 
-    private int getIntInput(JTextField textField) {
+    private int getIntInput() {
         try {
-            int input = Integer.parseInt(textField.getText());
-            if (input > 0) {
-                return input;
-            } else {
+            int input = Integer.parseInt(inputField.getText());
+            if (input <= 0) {
                 outputArea.append("Invalid input. Please enter a positive integer.\n");
+                return 0;
             }
+            return input;
         } catch (NumberFormatException e) {
             outputArea.append("Invalid input. Please enter an integer.\n");
+            return 0;
         }
-        return 0;
     }
 
     public static void main(String[] args) {
-        Pythagorean_Triple_Generator gui = new Pythagorean_Triple_Generator();
-        gui.setVisible(true);
+        SwingUtilities.invokeLater(() -> {
+            Pythagorean_Triple_Generator gui = new Pythagorean_Triple_Generator();
+            gui.setVisible(true);
+        });
     }
 
     public static int gcd(int a, int b) {
