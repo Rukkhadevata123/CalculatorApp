@@ -4,12 +4,12 @@ public class Game_of_Life {
 
     public Game_of_Life(int row, int col) {
         board = new int[row][col];
-    } 
+    }
 
     public void printBoard() {
-        for (int i = 0; i < board.length; i++) {
+        for (int[] ints : board) {
             for (int j = 0; j < board[0].length; j++) {
-                System.out.print(board[i][j] + " ");
+                System.out.print(ints[j] + " ");
             }
             System.out.println();
         }

@@ -1,6 +1,6 @@
 public class HotOrCold {
     private boolean isItHotter(int current, int previous, int target) {
-        if(current == target) {
+        if (current == target) {
             System.out.println("Found it!");
             return true;
         } else {

@@ -14,7 +14,7 @@ class TreeNode {
 
 class TreePanel extends JPanel {
     private static final int NODE_SIZE = 30;
-    private TreeNode root;
+    private final TreeNode root;
 
     public TreePanel(TreeNode root) {
         this.root = root;
@@ -97,10 +97,10 @@ public class TreeNodeSolution {
         boolean isDigit = array[0].matches("\\d+");
         for (String s : array) {
             if (isDigit != s.matches("\\d+")) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public boolean checkSameElements(String[] array1, String[] array2) {
@@ -111,16 +111,16 @@ public class TreeNodeSolution {
 
     public boolean checkNoDuplicates(String[] array) {
         Set<String> set = new HashSet<>(Arrays.asList(array));
-        return set.size() == array.length;
+        return set.size() != array.length;
     }
 
     public boolean checkValidCharacters(String[] array) {
         for (String s : array) {
             if (!s.matches("[a-zA-Z0-9]+")) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public static void main(String[] args) {
@@ -153,7 +153,7 @@ public class TreeNodeSolution {
             return;
         }
 
-        if (!solution.checkNoDuplicates(preorder) || !solution.checkNoDuplicates(inorder)) {
+        if (solution.checkNoDuplicates(preorder) || solution.checkNoDuplicates(inorder)) {
             System.out.println("错误：序列不能包含重复的元素！");  
             scanner.close();
             return;
@@ -165,13 +165,13 @@ public class TreeNodeSolution {
             return;
         }
 
-        if (!solution.checkValidCharacters(preorder) || !solution.checkValidCharacters(inorder)) {
+        if (solution.checkValidCharacters(preorder) || solution.checkValidCharacters(inorder)) {
             System.out.println("错误：序列只能包含数字和字母！");
             scanner.close();
             return;
         }
 
-        if (!solution.checkSameType(preorder) || !solution.checkSameType(inorder)) {
+        if (solution.checkSameType(preorder) || solution.checkSameType(inorder)) {
             System.out.println("错误：序列中的元素类型必须一致！");
             scanner.close();
             return;

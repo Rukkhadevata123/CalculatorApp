@@ -14,15 +14,15 @@ public class CouponCodeGenerator {
     private static String generateCouponCode(int codeLength) {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         StringBuilder sb = new StringBuilder();
-        
+
         SecureRandom secureRandom = new SecureRandom();
-        
+
         for (int i = 0; i < codeLength; i++) {
             int index = secureRandom.nextInt(characters.length());
             char randomChar = characters.charAt(index);
             sb.append(randomChar);
         }
-        
+
         return sb.toString();
     }
 }

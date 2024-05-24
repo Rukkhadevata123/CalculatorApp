@@ -8,11 +8,11 @@ public class NarcissisticNumber {
         // 提前计算0到9的n次幂
         int[] powers = new int[10];
         for (int i = 0; i < 10; i++) {
-            powers[i] = (int)Math.pow(i, n);
+            powers[i] = (int) Math.pow(i, n);
         }
 
-        int startNum = (int)Math.pow(10, n - 1); // n位数的最小值
-        int endNum = (int)Math.pow(10, n) - 1; // n位数的最大值
+        int startNum = (int) Math.pow(10, n - 1); // n位数的最小值
+        int endNum = (int) Math.pow(10, n) - 1; // n位数的最大值
         for (int i = startNum; i <= endNum; i++) {
             int sum = 0;
             int temp = i;

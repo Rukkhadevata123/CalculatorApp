@@ -47,14 +47,14 @@ public class Pythagorean_Triple_Generator extends JFrame {
                     int q = 2 * i * u;
                     int w = Math.abs(u * u - i * i);
                     int c = u * u + i * i;
-                    int[] sb = { q, w, c };
+                    int[] sb = {q, w, c};
                     Arrays.sort(sb); // 对每个勾股数进行排序
                     triples.add(sb);
                 }
             }
         }
 
-        Collections.sort(triples, (a, b) -> {
+        triples.sort((a, b) -> {
             if (a[0] == b[0])
                 return Integer.compare(a[1], b[1]);
             return Integer.compare(a[0], b[0]);

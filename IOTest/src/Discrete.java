@@ -9,10 +9,10 @@ public class Discrete {
         }
         return sum;
     }
-    
-    public static double[] normalize(double[] values){
+
+    public static double[] normalize(double[] values) {
         double sum = sum(values);
-        for(int i = 0; i < values.length; i++){
+        for (int i = 0; i < values.length; i++) {
             values[i] = values[i] / sum;
         }
         return values;
@@ -21,9 +21,9 @@ public class Discrete {
     public static int discrete(double[] values) {
         double random = Math.random();
         double sum = 0;
-        for(int i = 0; i < values.length; i++){
+        for (int i = 0; i < values.length; i++) {
             sum += values[i];
-            if(random <= sum){
+            if (random <= sum) {
                 return i;
             }
         }
@@ -31,8 +31,7 @@ public class Discrete {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        try {
+        try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("Enter the number of elements:");
             int n = scanner.nextInt();
             System.out.println("Enter the elements:");
@@ -61,8 +60,6 @@ public class Discrete {
             }
         } catch (InputMismatchException e) {
             System.out.println("Invalid input. Please enter a number.");
-        } finally {
-            scanner.close();
         }
     }
 }

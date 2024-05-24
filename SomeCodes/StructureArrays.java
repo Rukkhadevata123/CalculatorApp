@@ -4,20 +4,23 @@ public class StructureArrays {
     public enum Gender {
         BOY, GIRL
     }
+
     public int id;
     public String name;
     public Gender gender;
     public int age;
-    public StructureArrays(int id,String name,Gender gender,int age) {
+
+    public StructureArrays(int id, String name, Gender gender, int age) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.age = age;
     }
-    public static void delete(ArrayList<StructureArrays> list1,ArrayList<StructureArrays> list2) {
-        for (int i=0;i<list1.size();i++) {
-            for (int j=0;j<list2.size();j++) {
-                if (list1.get(i).id == list2.get(j).id) {
+
+    public static void delete(ArrayList<StructureArrays> list1, ArrayList<StructureArrays> list2) {
+        for (int i = 0; i < list1.size(); i++) {
+            for (StructureArrays structureArrays : list2) {
+                if (list1.get(i).id == structureArrays.id) {
                     list1.remove(i);
                     i--; // 重新检查当前位置
                     break; // 跳出内层循环
@@ -28,40 +31,27 @@ public class StructureArrays {
     }
 
     public static void sort(ArrayList<StructureArrays> list) {
-        Collections.sort(list, new Comparator<StructureArrays>() {
-            @Override
-            public int compare(StructureArrays o1, StructureArrays o2) {
-                // 先按性别排序，男性在前，女性在后
-                int genderCompare = o1.gender.compareTo(o2.gender);
-                if (genderCompare != 0) {
-                    return genderCompare;
-                }
-
-                // 如果性别相同，再按id升序排序
-                return Integer.compare(o1.id, o2.id);
-            }
-        });
+        // 先按性别排序，男性在前，女性在后
+        // 如果性别相同，再按id升序排序
+        list.sort(Comparator.comparing((StructureArrays o) -> o.gender).thenComparingInt(o -> o.id));
     }
-    public static void merge(ArrayList<StructureArrays> list1,ArrayList<StructureArrays> list2) {
-        for (int i=0;i<list2.size();i++) {
-            list1.add(list2.get(i));
-        }
+
+    public static void merge(ArrayList<StructureArrays> list1, ArrayList<StructureArrays> list2) {
+        list1.addAll(list2);
         sort(list1);
     }
+
     @Override
     public String toString() {
-        return "StructureArrays{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", gender='" + gender + '\'' +
-                ", age=" + age +
-                '}';
+        return "StructureArrays{" + "id=" + id + ", name='" + name + '\'' + ", gender='" + gender + '\'' + ", age=" + age + '}';
     }
+
     public static void display(ArrayList<StructureArrays> list) {
-        for (int i=0;i<list.size();i++) {
-            System.out.println(list.get(i));
+        for (StructureArrays structureArrays : list) {
+            System.out.println(structureArrays);
         }
     }
+
     public static ArrayList<StructureArrays> readLines(Scanner sc) {
         var list = new ArrayList<StructureArrays>();
         System.out.print("请输入总人数：");
@@ -79,6 +69,7 @@ public class StructureArrays {
         }
         return list;
     }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         var list1 = readLines(sc);
@@ -88,10 +79,10 @@ public class StructureArrays {
         System.out.println("list2:");
         display(list2);
         System.out.println("删除list1中与list2中相同id的人：");
-        delete(list1,list2);
+        delete(list1, list2);
         display(list1);
         System.out.println("合并list1和list2：");
-        merge(list1,list2);
+        merge(list1, list2);
         display(list1);
     }
 

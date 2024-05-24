@@ -20,7 +20,8 @@ public class MatrixAddition {
 
     /**
      * This method is used to create a matrix with user input.
-     * @param sc The Scanner object used to get user input.
+     *
+     * @param sc      The Scanner object used to get user input.
      * @param message The message to display to the user before getting input.
      * @return The created matrix.
      */
@@ -43,6 +44,7 @@ public class MatrixAddition {
 
     /**
      * This method is used to add two matrices together.
+     *
      * @param matrixA The first matrix to add.
      * @param matrixB The second matrix to add.
      * @return The sum of the two matrices.
@@ -66,6 +68,7 @@ public class MatrixAddition {
 
     /**
      * This method is used to print a matrix to the console.
+     *
      * @param matrix The matrix to print.
      */
     private static void printMatrix(int[][] matrix) {

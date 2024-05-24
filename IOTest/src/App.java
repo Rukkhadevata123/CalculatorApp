@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class App {
     public static void generateCombinations(int n, int k) {
         generateCombinationsHelper("", 1, n, k);

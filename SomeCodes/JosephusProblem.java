@@ -75,7 +75,7 @@ public class JosephusProblem {
             }
         }
 
-        System.out.println("\n最后剩余的人：" + list.get(0));
+        System.out.println("\n最后剩余的人：" + list.getFirst());
     }
 }
 

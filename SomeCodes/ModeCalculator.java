@@ -1,14 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class ModeCalculator extends JFrame {
-    private JTextArea inputTextArea;
-    private JButton calculateButton;
-    private JLabel resultLabel;
+    private final JTextArea inputTextArea;
+    private final JLabel resultLabel;
 
     public ModeCalculator() {
         setTitle("众数计算器");
@@ -23,19 +20,7 @@ public class ModeCalculator extends JFrame {
         JScrollPane scrollPane = new JScrollPane(inputTextArea);
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
-        calculateButton = new JButton("计算众数");
-        calculateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String input = inputTextArea.getText();
-                java.util.List<Integer> modes = calculateMode(input);
-                if (!modes.isEmpty()) {
-                    resultLabel.setText("众数: " + modes.stream().map(Object::toString).collect(Collectors.joining(", ")));
-                } else {
-                    resultLabel.setText("输入无效，请输入数字！");
-                }
-            }
-        });
+        JButton calculateButton = getjButton();
         contentPane.add(calculateButton, BorderLayout.SOUTH);
 
         resultLabel = new JLabel("结果将显示在这里");
@@ -43,6 +28,20 @@ public class ModeCalculator extends JFrame {
 
         setContentPane(contentPane);
         setVisible(true);
+    }
+
+    private JButton getjButton() {
+        JButton calculateButton = new JButton("计算众数");
+        calculateButton.addActionListener(e -> {
+            String input = inputTextArea.getText();
+            java.util.List<Integer> modes = calculateMode(input);
+            if (!modes.isEmpty()) {
+                resultLabel.setText("众数: " + modes.stream().map(Object::toString).collect(Collectors.joining(", ")));
+            } else {
+                resultLabel.setText("输入无效，请输入数字！");
+            }
+        });
+        return calculateButton;
     }
 
     private java.util.List<Integer> calculateMode(String input) {

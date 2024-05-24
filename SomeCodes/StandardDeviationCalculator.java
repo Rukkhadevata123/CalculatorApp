@@ -1,13 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 public class StandardDeviationCalculator extends JFrame {
-    private JTextArea inputTextArea;
-    private JButton calculateButton;
-    private JLabel resultLabel;
+    private final JTextArea inputTextArea;
+    private final JLabel resultLabel;
 
     public StandardDeviationCalculator() {
         setTitle("标准差计算器");
@@ -22,19 +19,7 @@ public class StandardDeviationCalculator extends JFrame {
         JScrollPane scrollPane = new JScrollPane(inputTextArea);
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
-        calculateButton = new JButton("计算标准差");
-        calculateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String input = inputTextArea.getText();
-                double standardDeviation = calculateStandardDeviation(input);
-                if (!Double.isNaN(standardDeviation)) {
-                    resultLabel.setText("标准差: " + standardDeviation);
-                } else {
-                    resultLabel.setText("输入无效，请输入数字！");
-                }
-            }
-        });
+        JButton calculateButton = getjButton();
         contentPane.add(calculateButton, BorderLayout.SOUTH);
 
         resultLabel = new JLabel("结果将显示在这里");
@@ -44,18 +29,28 @@ public class StandardDeviationCalculator extends JFrame {
         setVisible(true);
     }
 
+    private JButton getjButton() {
+        JButton calculateButton = new JButton("计算标准差");
+        calculateButton.addActionListener(e -> {
+            String input = inputTextArea.getText();
+            double standardDeviation = calculateStandardDeviation(input);
+            if (!Double.isNaN(standardDeviation)) {
+                resultLabel.setText("标准差: " + standardDeviation);
+            } else {
+                resultLabel.setText("输入无效，请输入数字！");
+            }
+        });
+        return calculateButton;
+    }
+
     private double calculateStandardDeviation(String input) {
         try {
-            double[] numbers = Arrays.stream(input.trim().split("\\s+"))
-                    .mapToDouble(Double::parseDouble)
-                    .toArray();
+            double[] numbers = Arrays.stream(input.trim().split("\\s+")).mapToDouble(Double::parseDouble).toArray();
 
             double sum = Arrays.stream(numbers).sum();
             double mean = sum / numbers.length;
 
-            double squaredDiffSum = Arrays.stream(numbers)
-                    .map(x -> Math.pow(x - mean, 2))
-                    .sum();
+            double squaredDiffSum = Arrays.stream(numbers).map(x -> Math.pow(x - mean, 2)).sum();
 
             double variance = squaredDiffSum / numbers.length;
             return Math.sqrt(variance);

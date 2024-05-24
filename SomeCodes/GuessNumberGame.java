@@ -28,6 +28,21 @@ public class GuessNumberGame extends JFrame {
         JLabel highestNumberLabel = new JLabel("What is the highest number?");
         JTextField highestNumberField = new JTextField();
 
+        JButton startButton = getjButton(guessCountField, highestNumberField);
+
+        panel.add(guessCountLabel);
+        panel.add(guessCountField);
+        panel.add(highestNumberLabel);
+        panel.add(highestNumberField);
+        panel.add(startButton);
+
+        add(panel);
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    private JButton getjButton(JTextField guessCountField, JTextField highestNumberField) {
         JButton startButton = new JButton("Start Game");
 
         startButton.addActionListener(e -> {
@@ -44,17 +59,7 @@ public class GuessNumberGame extends JFrame {
 
             startGame(guessCount, highestNumber);
         });
-
-        panel.add(guessCountLabel);
-        panel.add(guessCountField);
-        panel.add(highestNumberLabel);
-        panel.add(highestNumberField);
-        panel.add(startButton);
-
-        add(panel);
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
+        return startButton;
     }
 
     private void startGame(int guessCount, int highestNumber) {
@@ -101,7 +106,7 @@ public class GuessNumberGame extends JFrame {
     }
 
     private int getIntInputWithValidation(int highestNumber) {
-        int input=1;
+        int input = 1;
         boolean isValid;
 
         do {
@@ -154,7 +159,7 @@ public class GuessNumberGame extends JFrame {
         Set<Integer> set2 = Arrays.stream(arr2).boxed().collect(Collectors.toSet());
         List<Integer> intersection = list1.stream()
                 .filter(set2::contains)
-                .collect(Collectors.toList());
+                .toList();
         return intersection.size();
     }
 

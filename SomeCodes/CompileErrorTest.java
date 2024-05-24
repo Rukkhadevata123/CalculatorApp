@@ -13,14 +13,14 @@ public class CompileErrorTest {
     public static final String f = "Float";
     public static final String o = "Operator";
     public static final String v = "Variable";
-    static ArrayList<String> reversed = new ArrayList<String>(Arrays.asList(
+    static ArrayList<String> reversed = new ArrayList<>(Arrays.asList(
             "abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "const", "continue",
             "default", "do", "double", "else", "enum", "extends", "final", "finally", "float", "for", "if", "goto",
             "implements", "import", "instanceof", "int", "interface", "long", "native", "new", "package", "private",
             "protected", "public", "return", "short", "static", "strictfp", "super", "switch", "synchronized", "this",
             "throw", "throws", "transient", "try", "void", "volatile", "while"));
-    static ArrayList<String> operator = new ArrayList<String>(Arrays.asList(
-            "+", "-", "*", "/", "=","%", "++", "--", "==", "!=", ">", "<", ">=", "<=", "&&", "||", "!", "&", "|", "^",
+    static ArrayList<String> operator = new ArrayList<>(Arrays.asList(
+            "+", "-", "*", "/", "=", "%", "++", "--", "==", "!=", ">", "<", ">=", "<=", "&&", "||", "!", "&", "|", "^",
             "~", "<<", ">>", ">>>", "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "<<=", ">>=", ">>>="));
 
     public static boolean compile(String s) {
@@ -88,10 +88,8 @@ public class CompileErrorTest {
         Scanner sc = new Scanner(System.in);
         ArrayList<String> input = new ArrayList<>();
         while (sc.hasNextLine()) {
-            String[] line = sc.nextLine().split(";|\\n");
-            for (String s : line) {
-                input.add(s);
-            }
+            String[] line = sc.nextLine().split("[;\\n]");
+            Collections.addAll(input, line);
         }
         int count = 0;
         for (String s : input) {

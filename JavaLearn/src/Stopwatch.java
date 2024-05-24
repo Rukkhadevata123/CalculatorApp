@@ -1,12 +1,23 @@
 public class Stopwatch {
-    private final long start; // 记录秒表开始的时间
+    private long start;
+    private long pausedTime;
 
     public Stopwatch() {
-        start = System.currentTimeMillis(); // 获取当前系统时间（毫秒）
+        start = System.currentTimeMillis();
+        pausedTime = 0;
+    }
+
+    public void pause() {
+        pausedTime = System.currentTimeMillis();
+    }
+
+    public void resume() {
+        start += System.currentTimeMillis() - pausedTime;
+        pausedTime = 0;
     }
 
     public double elapsedTime() {
-        long now = System.currentTimeMillis(); // 获取当前系统时间（毫秒）
-        return (now - start) / 1000.0; // 计算经过的时间（秒）
+        long now = System.currentTimeMillis();
+        return (now - start) / 1000.0;
     }
 }

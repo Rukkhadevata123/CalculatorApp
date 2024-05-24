@@ -77,8 +77,7 @@ public class EightQueens extends JFrame {
             for (int i = 0; i < 8; i++) {
                 boolean valid = true;
                 for (int j = 0; j < currentRow; j++) {
-                    if (queens[j].getColumn() == i || queens[j].getRow() - queens[j].getColumn() == currentRow - i
-                            || queens[j].getRow() + queens[j].getColumn() == currentRow + i) {
+                    if (queens[j].getColumn() == i || queens[j].getRow() - queens[j].getColumn() == currentRow - i || queens[j].getRow() + queens[j].getColumn() == currentRow + i) {
                         valid = false;
                         break;
                     }

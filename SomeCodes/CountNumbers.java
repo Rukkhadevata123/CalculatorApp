@@ -26,10 +26,10 @@ public class CountNumbers {
         for (int j : d) {
             s.add(j);
         }
-        Integer[] e = s.toArray(new Integer[s.size()]);
+        Integer[] e = s.toArray(new Integer[0]);
         Arrays.sort(e);
-        for (int i = 0; i < e.length; i++) {
-            System.out.println(e[i] + ":" + countNumbers(e[i], d));
+        for (Integer integer : e) {
+            System.out.println(integer + ":" + countNumbers(integer, d));
         }
     }
 }

@@ -6,13 +6,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class CalculatorApp extends JFrame {
-    private JTextArea inputTextArea;
-    private JButton averageCalculatorButton;
-    private JButton modeCalculatorButton;
-    private JButton standardDeviationCalculatorButton;
-    private JButton sumCalculatorButton; // 求和按钮
-    private JButton varianceCalculatorButton; // 求方差按钮
-    private JLabel resultLabel;
+    private final JTextArea inputTextArea;
+    private final JLabel resultLabel;
 
     public CalculatorApp() {
         setTitle("计算器");
@@ -29,19 +24,21 @@ public class CalculatorApp extends JFrame {
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 5, 10, 10)); // 将按钮面板改为一行五列
-        averageCalculatorButton = createButton("平均数计算器", this::calculateAverage);
+        JButton averageCalculatorButton = createButton("平均数计算器", this::calculateAverage);
         buttonPanel.add(averageCalculatorButton);
 
-        modeCalculatorButton = createButton("众数计算器", this::calculateMode);
+        JButton modeCalculatorButton = createButton("众数计算器", this::calculateMode);
         buttonPanel.add(modeCalculatorButton);
 
-        standardDeviationCalculatorButton = createButton("标准差计算器", this::calculateStandardDeviation);
+        JButton standardDeviationCalculatorButton = createButton("标准差计算器", this::calculateStandardDeviation);
         buttonPanel.add(standardDeviationCalculatorButton);
 
-        sumCalculatorButton = createButton("求和", this::calculateSum); // 新增求和按钮
+        // 求和按钮
+        JButton sumCalculatorButton = createButton("求和", this::calculateSum); // 新增求和按钮
         buttonPanel.add(sumCalculatorButton);
 
-        varianceCalculatorButton = createButton("求方差", this::calculateVariance); // 新增求方差按钮
+        // 求方差按钮
+        JButton varianceCalculatorButton = createButton("求方差", this::calculateVariance); // 新增求方差按钮
         buttonPanel.add(varianceCalculatorButton);
 
         contentPane.add(buttonPanel, BorderLayout.SOUTH);
@@ -193,6 +190,7 @@ public class CalculatorApp extends JFrame {
                 .mapToInt(Integer::parseInt)
                 .toArray();
     }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(CalculatorApp::new);
     }

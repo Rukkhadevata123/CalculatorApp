@@ -53,7 +53,7 @@ public class DoublyLinkedList {
         }
     }
 
-    public Node findNode(int data) {
+    private Node findNode(int data) {
         Node current = head;
         while (current != null) {
             if (current.data == data) {

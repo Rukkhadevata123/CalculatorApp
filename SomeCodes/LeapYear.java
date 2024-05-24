@@ -19,7 +19,7 @@ public class LeapYear {
         System.out.print("Please enter a number.");
         a[1] = in.nextInt();
         for (int i = a[0]; i <= a[1]; i++) {
-            if(isLeapYear(i))
+            if (isLeapYear(i))
                 System.out.println(i + " is a leap year.");
             else
                 System.out.println(i + " is not a leap year.");

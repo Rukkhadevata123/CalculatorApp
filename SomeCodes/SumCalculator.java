@@ -3,12 +3,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class SumCalculator extends JFrame {
-    private JTextArea inputTextArea;
-    private JButton calculateButton;
-    private JLabel resultLabel;
+    private final JTextArea inputTextArea;
+    private final JLabel resultLabel;
 
     public SumCalculator() {
         setTitle("求和计算器");
@@ -23,7 +21,7 @@ public class SumCalculator extends JFrame {
         JScrollPane scrollPane = new JScrollPane(inputTextArea);
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
-        calculateButton = new JButton("计算求和");
+        JButton calculateButton = new JButton("计算求和");
         calculateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

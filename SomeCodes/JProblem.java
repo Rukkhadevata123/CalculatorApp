@@ -30,7 +30,7 @@ public class JProblem {
         }
 
         // 返回最后剩下的人的编号
-        return people.get(0);
+        return people.getFirst();
     }
 
     public static void main(String[] args) {

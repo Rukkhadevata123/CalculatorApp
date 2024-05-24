@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
 public class Game_of_Life_GUI extends JFrame {
 
     private Game_of_Life game;
-    private JTextField rowField, colField, iterField;
-    private JTextField speedField;
+    private final JTextField rowField;
+    private final JTextField colField;
+    private final JTextField iterField;
+    private final JTextField speedField;
     private GamePanel gamePanel;
     private JFrame gameFrame;
     private Timer timer;
@@ -29,51 +31,48 @@ public class Game_of_Life_GUI extends JFrame {
         inputPanel.add(colField);
         inputPanel.add(new JLabel("重复次数:"));
         inputPanel.add(iterField);
-        inputPanel.add(new JLabel("速度(ms):")); 
-        inputPanel.add(speedField); 
+        inputPanel.add(new JLabel("速度(ms):"));
+        inputPanel.add(speedField);
         inputPanel.add(startButton);
 
         add(inputPanel, BorderLayout.NORTH);
 
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int rows = Integer.parseInt(rowField.getText());
-                int cols = Integer.parseInt(colField.getText());
-                int iterations = Integer.parseInt(iterField.getText());
-                int speed = Integer.parseInt(speedField.getText());
+        startButton.addActionListener(e -> {
+            int rows = Integer.parseInt(rowField.getText());
+            int cols = Integer.parseInt(colField.getText());
+            int iterations = Integer.parseInt(iterField.getText());
+            int speed = Integer.parseInt(speedField.getText());
 
-                game = new Game_of_Life(rows, cols);
-                game.initializeBoard();
+            game = new Game_of_Life(rows, cols);
+            game.initializeBoard();
 
-                gamePanel = new GamePanel();
-                gamePanel.setBoard(game.getBoard());
+            gamePanel = new GamePanel();
+            gamePanel.setBoard(game.getBoard());
 
-                gameFrame = new JFrame();
-                gameFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                gameFrame.add(gamePanel);
-                gameFrame.setTitle("生命游戏 - 游戏窗口");
-                gameFrame.setSize(cols * 40, rows * 40);
-                gameFrame.setLocationRelativeTo(null);
-                gameFrame.setVisible(true);
+            gameFrame = new JFrame();
+            gameFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            gameFrame.add(gamePanel);
+            gameFrame.setTitle("生命游戏 - 游戏窗口");
+            gameFrame.setSize(cols * 40, rows * 40);
+            gameFrame.setLocationRelativeTo(null);
+            gameFrame.setVisible(true);
 
-                timer = new Timer(speed, new ActionListener() {
-                    int iter = 0;
+            timer = new Timer(speed, new ActionListener() {
+                int iter = 0;
 
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        if (iter < iterations) {
-                            game.updateBoard();
-                            gamePanel.setBoard(game.getBoard());
-                            gamePanel.repaint();
-                            iter++;
-                        } else {
-                            ((Timer) e.getSource()).stop();
-                        }
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (iter < iterations) {
+                        game.updateBoard();
+                        gamePanel.setBoard(game.getBoard());
+                        gamePanel.repaint();
+                        iter++;
+                    } else {
+                        ((Timer) e.getSource()).stop();
                     }
-                });
-                timer.start();
-            }
+                }
+            });
+            timer.start();
         });
 
         setTitle("生命游戏 - 主窗口");
@@ -86,7 +85,7 @@ public class Game_of_Life_GUI extends JFrame {
         new Game_of_Life_GUI();
     }
 
-    class GamePanel extends JPanel {
+    static class GamePanel extends JPanel {
         private int[][] board;
 
         public void setBoard(int[][] board) {

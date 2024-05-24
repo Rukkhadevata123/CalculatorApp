@@ -61,12 +61,12 @@ public class GuessNumberGame {
             System.out.println("Absolutely the same! Pretty Good Luck!");
         } else {
             System.out.println(matchCount + " numbers the same, good luck.");
-            int expectedNumberOfCorrectGuesses = (int) Math.pow(guessCount, 2) / highestNumber; 
+            int expectedNumberOfCorrectGuesses = (int) Math.pow(guessCount, 2) / highestNumber;
             System.out.println("Expected number of correct guesses: " + expectedNumberOfCorrectGuesses);
             double accuracy = (double) matchCount / guessCount * 100;
             System.out.printf("Your accuracy: %.2f%%%n", accuracy);
-            double expectedAccuracy = (double) guessCount / highestNumber * 100; 
-            System.out.printf("Expected accuracy: %.2f%%%n", expectedAccuracy); 
+            double expectedAccuracy = (double) guessCount / highestNumber * 100;
+            System.out.printf("Expected accuracy: %.2f%%%n", expectedAccuracy);
         }
 
         in.close(); // 关闭Scanner

@@ -120,9 +120,10 @@ public class SimpleStream<T> {
         System.out.println("--------------------");
 
         // 示例：使用collect操作
-        System.out.println(SimpleStream.of(list).collect(ArrayList::new, ArrayList::add));
+        System.out.println(Optional.ofNullable(SimpleStream.of(list).collect(ArrayList::new, ArrayList::add)));
         System.out.println(SimpleStream.of(list).collect(() -> new HashSet<>(), (set, i) -> set.add(i)));
-        System.out.println(SimpleStream.of(list).collect(StringBuilder::new, StringBuilder::append));
+        //System.out.println(SimpleStream.of(list).collect(() -> new HashSet<>(), HashSet::add));
+        System.out.println(Optional.ofNullable(SimpleStream.of(list).collect(StringBuilder::new, StringBuilder::append)));
         System.out.println(
                 SimpleStream.of(list).collect(() -> new StringBuilder(), (sb, i) -> sb.append(i).append(", ")));
         System.out.println(SimpleStream.of(list).collect(() -> new StringJoiner("-"), (sj, j) -> sj.add(j.toString())));

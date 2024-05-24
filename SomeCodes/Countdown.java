@@ -1,14 +1,15 @@
 // A countdown program using JavaSwing
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class Countdown extends JFrame {
     // Declare the components
-    private JTextField inputField; // To input the seconds
-    private JButton startButton; // To start the countdown
-    private JLabel resultLabel; // To show the countdown result
-    private Timer timer; // To control the countdown logic
+    private final JTextField inputField; // To input the seconds
+    private final JButton startButton; // To start the countdown
+    private final JLabel resultLabel; // To show the countdown result
+    private final Timer timer; // To control the countdown logic
     private int seconds; // To store the input seconds
 
     // Constructor
@@ -25,26 +26,24 @@ public class Countdown extends JFrame {
         add(startButton);
         add(resultLabel);
         // Add an action listener to the start button
-        startButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Get the input seconds from the text field
-                try {
-                    seconds = Integer.parseInt(inputField.getText());
-                    // Check if the input is valid
-                    if (seconds > 0) {
-                        // Start the timer
-                        timer.start();
-                        // Disable the input field and the start button
-                        inputField.setEnabled(false);
-                        startButton.setEnabled(false);
-                    } else {
-                        // Show an error message
-                        resultLabel.setText("Invalid input. Please enter a positive integer.");
-                    }
-                } catch (NumberFormatException ex) {
+        startButton.addActionListener(e -> {
+            // Get the input seconds from the text field
+            try {
+                seconds = Integer.parseInt(inputField.getText());
+                // Check if the input is valid
+                if (seconds > 0) {
+                    // Start the timer
+                    timer.start();
+                    // Disable the input field and the start button
+                    inputField.setEnabled(false);
+                    startButton.setEnabled(false);
+                } else {
                     // Show an error message
                     resultLabel.setText("Invalid input. Please enter a positive integer.");
                 }
+            } catch (NumberFormatException ex) {
+                // Show an error message
+                resultLabel.setText("Invalid input. Please enter a positive integer.");
             }
         });
         // Set the frame properties

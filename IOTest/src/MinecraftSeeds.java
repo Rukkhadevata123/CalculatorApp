@@ -22,7 +22,7 @@ public class MinecraftSeeds {
                 seed = Long.parseLong(input);
             } catch (NumberFormatException e) {
                 // 如果输入不是一个有效的长整数，使用输入的哈希码作为种子
-                seed = (long) input.hashCode();
+                seed = input.hashCode();
             }
         } else {
             System.out.println("Invalid choice. Generating a random seed.");

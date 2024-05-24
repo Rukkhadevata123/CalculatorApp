@@ -292,7 +292,7 @@ public class BreakoutGame extends Application {
         for (int i = 0; i < BRICK_ROWS; i++) {
             for (int j = 0; j < BRICK_COLS; j++) {
                 // If the brick is visible and the ball intersects it
-                if (bricks[i][j].isVisible() && ball.intersects(bricks[i][j].getBoundsInLocal())&& !Color.RED.equals(bricks[i][j].getFill())) {
+                if (bricks[i][j].isVisible() && ball.intersects(bricks[i][j].getBoundsInLocal()) && !Color.RED.equals(bricks[i][j].getFill())) {
                     // Reverse the y velocity, hide the brick and increase the score
                     dy = -dy;
                     bricks[i][j].setVisible(false);
