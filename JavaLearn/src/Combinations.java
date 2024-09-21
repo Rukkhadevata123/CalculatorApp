@@ -1,4 +1,4 @@
-public class App {
+public class Combinations {
     public static void generateCombinations(int n, int k) {
         generateCombinationsHelper("", 1, n, k);
     }
