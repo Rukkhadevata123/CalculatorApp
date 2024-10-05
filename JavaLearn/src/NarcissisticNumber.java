@@ -25,5 +25,6 @@ public class NarcissisticNumber {
                 System.out.println(i);
             }
         }
+        input.close();
     }
 }

@@ -14,9 +14,9 @@ public class LeapYear {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int[] a = new int[2];
-        System.out.print("Please enter a number.");
+        System.out.print("Please enter a year number.");
         a[0] = in.nextInt();
-        System.out.print("Please enter a number.");
+        System.out.print("Please enter a year number.");
         a[1] = in.nextInt();
         for (int i = a[0]; i <= a[1]; i++) {
             if (isLeapYear(i))
@@ -24,5 +24,6 @@ public class LeapYear {
             else
                 System.out.println(i + " is not a leap year.");
         }
+        in.close();
     }
 }

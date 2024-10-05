@@ -59,6 +59,7 @@ public class CommandTest {
                 i++;
             }
         }
+        sc.close();
         
         /*
         for(Map.Entry<Character, Boolean> entry : map.entrySet()){

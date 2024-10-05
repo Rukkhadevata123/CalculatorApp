@@ -31,5 +31,6 @@ public class CountNumbers {
         for (Integer integer : e) {
             System.out.println(integer + ":" + countNumbers(integer, d));
         }
+        sc.close();
     }
 }

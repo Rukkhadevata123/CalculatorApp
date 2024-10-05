@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class JProblem {
+public class JosephusProblem {
     public static int josephus(int n, int k, int m) {
         // 创建一个列表来表示所有的人和他们的生命值
         ArrayList<Integer> people = new ArrayList<>();
@@ -44,5 +44,6 @@ public class JProblem {
 
         int survivor = josephus(n, k, m);
         System.out.println("最后幸存者的编号是：" + survivor);
+        scanner.close();
     }
 }

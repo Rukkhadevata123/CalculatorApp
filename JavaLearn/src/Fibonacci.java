@@ -21,5 +21,6 @@ public class Fibonacci {
         for (BigInteger num : f) {
             System.out.println(num);
         }
+        in.close();
     }
 }

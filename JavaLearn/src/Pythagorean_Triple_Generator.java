@@ -2,7 +2,6 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import javax.swing.*;
 
 public class Pythagorean_Triple_Generator extends JFrame {
